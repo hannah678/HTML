@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <meta name="viewport" content="width=device-width, initial-sale=1"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>jumbotron: 배경을 회색으로 하고 패딩을 확보하는 클래스</h1>
+        </div>
+        <p class="jumbotron">
+            The grid system is responsive, and the columns will re-arrange automatically depending on the screen size.
+        </p>
+        <section class="jumbotron">
+            The grid system is responsive, and the columns will re-arrange automatically depending on the screen size.
+        </section>
+        <hr>
+        <!--
+            .table: 표에 적용하는 클래스
+            .table table-striped: 줄단위 배경색
+            .table table-bordered: border가 있는 표
+            .table table-hover: 마우스 오버, 아웃시 배경색 변경
+            .table table-dark : 표의 배경색을 어두운 색으로 변환
+        -->
+        <table class="table table-striped table-hover table-dark">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>연락처</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>이현수</td>
+                    <td>010-4212-4324</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>김개똥</td>
+                    <td>010-8888-9999</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>이순신</td>
+                    <td>010-9809-9999</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>세종대왕</td>
+                    <td>010-1234-4213</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>홍길동</td>
+                    <td>010-4213-3251</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">문의사항은 02-1234-5678로 연락바랍니다.</td>
+                </tr>
+            </tfoot>
+        </table>
+        <hr>
+        <!--
+            색상
+            *_1 -> table, btn, text
+            *_2 -> 색
+                primary: blue
+                success: green
+                danger: red
+                info: mint
+                warning: yellow
+                active: gray
+                secondary: gray
+        -->
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>연락처</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-secondary">
+                    <td>1</td>
+                    <td>이현수</td>
+                    <td>010-4212-4324</td>
+                </tr>
+                <tr class="table-info">
+                    <td>2</td>
+                    <td>김개똥</td>
+                    <td>010-8888-9999</td>
+                </tr>
+                <tr class="table-warning">
+                    <td>3</td>
+                    <td>이순신</td>
+                    <td>010-9809-9999</td>
+                </tr>
+                <tr class="table-danger">
+                    <td>4</td>
+                    <td>세종대왕</td>
+                    <td>010-1234-4213</td>
+                </tr>
+                <tr class="table-success">
+                    <td>5</td>
+                    <td>홍길동</td>
+                    <td>010-4213-3251</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="table-active">
+                    <td colspan="3">문의사항은 02-1234-5678로 연락바랍니다.</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>

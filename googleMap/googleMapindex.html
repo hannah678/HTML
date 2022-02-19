@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBnrzXBSlnIINDm4WEt1HS8UeWWzJ-Tzpk&callback=initMap">
+</script>
+<style>
+	#gmap{
+		width:100%;
+		height:700px;
+		border:1px solid gray;
+	}
+</style>
+</head>
+<body>
+<div id="gmap"></div>
+<script>
+	//지도의 표시 위치를 위도 경도값으로 설정'
+	var latitude = 37.5729503;
+	var longitude = 126.9793578;
+	
+	var map;
+	function setData(){
+		latitude = 37.5729503;
+		longitude = 126.9793578;
+	}
+	
+	function initMap(){
+		setData();
+		var myCenter = new google.maps.LatLng(latitude, longitude);
+		var option = { //json형식(키:데이터,...)
+				center:myCenter, //지도의 가운데
+				zoom:14, //0~21 중 선택, 숫자가 클수록 확대
+				mapTypeId:google.maps.MapTypeId.ROADMAP //지도종류(ROADMAP, HYBRID, STEELITE, TERRAIN)
+		}
+		//구글맵 객체 생성           지도에 표시될 곳
+		map = new google.maps.Map(document.getElementById("gmap"), option);
+		
+		//마커 표시
+		var marker = new google.maps.Marker({
+			position: myCenter, //마커를 표시할 위치
+			map: map, //마커로 표시될 지도
+			icon: "gmap_pin.png",
+			title: "서울시청"
+		});
+		marker.setMap(map);
+		
+		//마커 클릭시 대화상자 띄우기
+		//대화상자에 표시할 내용 만들기
+		var information = "위도: "+latitude + "<br/>경도: "+longitude+"<br/>";
+			information += "<a href='https://www.seoul.go.kr/main/index.jsp'><img src='../img/07.jpg' width='80' height='50'/>"
+		
+		//대화상자 객체 만들기
+		var info = new google.maps.InfoWindow({content: information});
+			
+		//이벤트 등록             이벤트처리할 마커, 마커 종류, 대화상자 열기
+		google.maps.event.addListener(marker, 'click', function(){
+			//     지도객체, 마커
+			info.open(map, marker)
+		});
+		
+		//반경표시
+		var myCity = new google.maps.Circle({
+			center: myCenter,
+			radius: 500, //반지름(m)
+			strokeColor: '#f00', //경계선의 색상
+			strokeOpacity: 0.5, // 경계선의 투명도(0~1)
+			strokeWidth: 3, //선의 두께(px)
+			fillColor: '#00f', //배경색
+			fillOpacity: 0.3 //배경색의 투명도(0~1)
+		});
+		myCity.setMap(map);
+	
+	
+	}
+</script>
+</body>
+</html>

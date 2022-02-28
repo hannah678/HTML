@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	body{
+	margin:0;
+	}
+	body, ul, li{
+    margin:0;
+    padding: 0;
+    list-style-type: none;
+    }
+    /*상단*/
+	#top{
+	height:100px; background:#ddd
+	}
+	#top>div{float:left}
+	#top>div:first-child{
+		width:70%	
+	}
+	#top>div:last-child{
+		width:30%;
+		text-align:right;
+	}
+	#header{
+        height:100px;
+		background:lightblue;
+	}
+	#header>div{
+		height:100px;
+		background:olive;
+		width:1200px;
+		margin:0 auto;
+	}
+	/*컨텐츠*/
+	#mainContent{
+		width:1200px; margin:0 auto;
+		background:#ddd;
+		overflow:auto;
+	}
+	#mainContent>div{float:left;}
+	#mainContent>div:first-child{
+		width:200px;
+		}
+	#mainContent>div:last-child{
+		width:1000px;}
+	#bottom{
+		height: 50px; text-align:center;
+		background:#666; color:#fff;
+	}
+	</style>
+</head>
+<body>
+<div id="top">
+	<div style="background:yellow">메뉴1</div>
+	<div style="background:pink">로그인 회원가입 고객센터</div>
+</div>
+<div id="header">
+	<div>두번째 탑</div>
+</div>
+<div id="mainContent">
+	<div>
+		<ul>
+			<li>자주하는 질문</li>
+			<li>Q&A</li>
+			<li>회원가입</li>
+			<li>커뮤니티</li>
+		</ul>
+	</div>
+	<div>
+		<img src="../img/01.jpg"/>
+		<img src="../img/02.jpg"/>
+		<img src="../img/03.jpg"/>
+		<img src="../img/04.jpg"/>
+	</div>
+</div>
+<div id="bottom">
+
+</div>
+</body>
+</html>

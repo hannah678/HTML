@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="Chrome">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<title>Vue</title>
+<script>
+    function viewTemplate(){
+        //template객체 내의 태그를 복사
+        var tag = document.getElemetsByTagName("template")[0]; //template태그중 첫번째 태그를 선택한다.
+        var tagCopy = tag.content.cloneNode(true);//복사하기
+        document.body.append(tagCopy)
+    }
+</script>
+</head>
+<body>
+    <!-- template태그 : 화면에 보이지 않는 기능을 가진 태그-->
+    <button onclick="viewTemplate()">클릭하세요..</button>
+    <template>
+        <h1>이미지</h1>
+        <img src="img/2.jpg" width="200" />
+    </template>
+
+</body>
+</html>

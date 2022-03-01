@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--
+        https://kr.vuejs.org/에서 cdn주소를 연결한다.
+    -->
+    <script src="https://cdn.jsdeliver.net/npm/vue/dist/vuejs"></script>
+    <title>Document</title>
+    <style>
+        img{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>뷰사용하기</h1>
+    <div id="app">
+        <img src="img/1.jpg" title="풍선도움말" />
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                message:'처음으로 하는 뷰!!!!!!',
+                hi:"안녕"
+            }
+        });
+        
+        new Vue({
+            el:'#app2',
+            data:{
+                msg:'이미지에 마우스를 올리면 나올 문자'
+            }
+        });
+
+    </script>
+</body>
+</html>

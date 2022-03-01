@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="Chrome">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<title>Vue</title>
+</head>
+<body>
+    <!-- 이벤트 발생시 함수 호출하는 방법 -->
+    <div id="app1">
+        <p>{{str}}</p>
+        <button v-on:click="reverseStr">문자열 뒤집기</button>
+        <button @click="reverseStr">문자열 뒤집기</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#app1',
+            data:{
+                str : "Vue를 이용한 이벤트 처리..."
+            },
+            methods:{
+                reverseStr : function(){
+                    this.str = this.str.split('').reverse().join('');
+                }
+            }
+        });
+    </script>
+    <hr/>
+    <div id="app2">
+    <!-- v-show: 객체를 숨기거나 보여줌. 스타일시트의 display와 같은 효과가 주어짐-->
+    <!--         전용객체가 Vue의 객체 내에 있어야 한다.-->
+    <!--         v-show="ture", v-show="false", v-show="status" -->
+    <button v-show="status">v-show를 이용한 화면 숨김처리하기</button>
+    
+    <template v-show="false">
+        템플릿태그는 기본이 보이지 않는 것이다.
+    <!-- v-show는 template태그에는 적용되지 않는다. -->
+    </template>
+    </div>
+    <script>
+        new Vue({
+            el:"#app2",
+            data:{
+                status: true
+            }
+        });
+    </script>
+    <hr/>
+    <div id="app3">
+        <!--
+            v-if: if의 값이 true일 때 객체가 화면에 보임
+            v-else: if값의 반대
+        -->
+        <button v-if="showState" @click="domChange">클릭하세요</button>
+        <div v-else v-on:click="domChange">새로나온 내용.....</div>
+        <!-- template를 이용하여 if문 사용하기-->
+        <template v-if="showState">
+            <button v-click="domChange">Click...꽃</button>
+            <ul>
+                <li>바나나</li>
+                <li>딸기</li>
+                <li>사과</li>
+            </ul>
+        </template>
+        <template v-else>
+            <button v-on:@click="domChange">Click...과일</button>
+            <ul>
+                <li>맨드라미</li>
+                <li>코스모스</li>
+                <li>히야신스</li>
+            </ul>
+        </template>
+    </div>
+    <script>
+        new Vue({
+            el:"#app3",
+            data:{
+                showState: true
+            },
+            methods:{
+                //함수 생성
+                domChange: function(){
+                    this.showState = !this.showState;
+                }
+            }
+        });
+    </script>
+</body>
+</body>
+</html>

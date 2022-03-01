@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="Chrome">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<title>Vue</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="dataChange">클릭하여 값 변경</button>
+        <ul>
+            <li v-for="v in arr">{{v}}</li>
+        </ul>
+
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data(){
+                return{
+                    arr: [100,200,"홍길동","세종대왕"]
+                }
+            },
+            methods:{
+                dataChange(){
+                    //배열의 데이터 변경하기
+                    //this.arr[2]="이순신"; //적용안됨
+                    //(1) set() 함수를 이용하여 배열의 값을 변경한다.
+                    //     (배열명, 변경할index, 변경할value)
+                   // Vue.set(this.arr, 2, "이순신");
+                    //Vue.set(this.arr, 5, "이순신2"); //데이터 추가도 가능
+                    //this.$set(this.arr, 1, 2000);
+
+                    //(2) splice()함수를 이용하여 배열의 값 변경: 한번에 여러개의 정보를 변경 가능
+                    //              시작index, 개수 , value
+                    //this.arr.splice(0        ,  1  , "가가가가");
+                    //this.arr.splice(1        ,  3  , "AAAA","BBBB", "CCCC");
+                    //this.arr.splice(10       ,  1  ,"xyz"); //없는 index일 때 마지막에 추가됨
+
+                    //(3) 배열을 복사하여 수정하기
+                    var arr_copy = [...this.arr, 1000]; //배열복사하기, 마지막 1000추가
+                    arr_copy[1] = 20000; //값 변경하기
+                    this.arr = arr_copy; // 복사 후 수정한 배열을 재할당한다.
+                }
+            }
+        });
+    </script>
+</body>
+</html>

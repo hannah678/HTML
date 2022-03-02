@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="Chrome">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+        crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+</head>
+<body>
+    <p>회원목록을 테이블로 만들어 관리하기</p>
+    <div id="app" class="container">
+        <div class="jumbotron">
+            <h2>회원정보</h2>
+            <label>이름: </label><input type="text" v-model:name="user.name"/>
+            <label>연락처: </label><input type="text" v-model:name="user.tel"/><br/>
+            <button class="btn btn-warning" @click="memInsert">회원추가하기</button>
+        </div>
+
+        <h1>회원목록</h1>
+        <table class="table table-striped">
+            <!-- 표의 제목 -->
+            <tr>
+                <td>번호</td>
+                <td>이름</td>
+                <td>연락처</td>
+                <td>비고</td>
+            </tr>
+            <!-- 회원목록 -->
+            <tr v-for="(value,index) in list">
+                <td>{{value.no}}</td>
+                <td>{{value.name}}</td>
+                <td>{{value.tel}}</td>
+                <td>
+                    <button class="btn btn-secondary" v-on:click="memEdit(index)">수정</button>
+                    <button class="btn btn-danger" @click="memDel(index)">삭제</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data(){
+                return {
+                    list:[
+                        {no:1, name:'홍길동', tel:'010-1234-5678'},
+                        {no:2, name:'세종대왕', tel:'010-1111-2222'},
+                        {no:3, name:'이순신', tel:'010-8989-7777'},
+                        {no:4, name:'박지성', tel:'010-9999-7777'},
+                        {no:5, name:'손흥민', tel:'010-1212-3434'}
+                    ],
+                    user:{
+                        no:0,
+                        name:'',
+                        tel:''
+                    }
+                };
+            },
+            methods:{
+                memInsert(){
+                    console.log(this.list);
+                    //이름, 연락처 입력유무 확인
+                    if(this.user.name==''){
+                        alert("이름을 입력 후 등록하세요.");
+                        return false;
+                    }
+                    if(this.user.tel==""){
+                        alert("연락처를 입력 후 등록하세요.");
+                        return false;
+                    }
+                    //배열 중 최고값, 최저값을 구할 수 있다.
+                    /*
+                        배열명.reduce(function(prev,next){
+                            return (prev>next)? prev: next;
+                        });
+                    */
+                    //번호 중 가장 큰 값을 구한다.
+                    var maxNo = this.list.reduce(function(prev,next){
+                        return(prev.no > next.no)? prev.no : next.no;
+                            //(                 ) true일 때 : false일 때
+                    });
+
+                    //배열의 마지막에 데이터 추가하는 함수: push()
+                    var newMem = {no: maxNo+1, name: this.user.name, tel:this.user.tel};
+                    this.list.push(newMem);
+                }, //memInsert
+                memEdit(idx){
+                    //index위치의 데이터를 user에 대입하면 입력컴퍼넌트가 
+                    //v-model로 연결되어 값이 폼에 보인다.
+                    this.user = this.list[idx];
+                },
+                memDel(idx){
+                    //splice(위치부터, n개): index위치의 n개의 정보를 지운다.
+                    this.list.splice(idx,1);
+                }
+            }//methods
+        });
+    </script>
+</body>
+</html>

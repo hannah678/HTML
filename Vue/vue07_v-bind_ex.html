@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="Chrome">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<title>Vue</title>
+<style>
+    div{width:300px; height:300px; margin:0 auto; overflow:hidden;}
+
+    .Canada{
+        background-color:brown;
+        border-radius:5%;
+        color:#fff;
+        border:1px solid gray;
+    }
+    .NewZealand{
+        background-color:rgb(42, 116, 165);
+        border-radius:15%;
+        color:rgb(255, 255, 255);
+        border:1px solid rgb(114, 19, 19);
+    }
+    .Spain{
+        background-color:rgb(56, 165, 42);
+        border-radius:35%;
+        color:rgb(151, 10, 10);
+        border:1px solid rgb(206, 43, 165);
+    }
+    .Turkey{
+        background-color:rgb(147, 165, 42);
+        border-radius:50%;
+        color:rgb(13, 172, 137);
+        border:1px solid rgb(66, 5, 207);
+    }
+</style>
+</head>
+<body>
+    <div id="app" class="className" @click="countryChange">
+        <h2>제목: {{title}}</h2>
+        <img v-bind:src="imgName" width="imgWidth" height="imgHeight"/>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                title: "캐나다",
+                imgName: "img/01.jpg",
+                //
+                imgWidth:"100%",
+                imgHeight:"260",
+
+                className: 'Canada'
+            },
+            methods:{
+                countryChange(){
+                    if(this.className=='Canada'){
+                        this.title ="뉴질랜드"; //title
+                        this.className = 'NewZealand'; //className
+                        this.imgName = 'img/02.jpg'; //img
+                    } else if(this.className=='NewZealand'){
+                        this.title ="터키"; //title
+                        this.className = 'Turkey'; //className
+                        this.imgName = 'img/03.jpg'; //img
+                    }else if(this.className=='Turkey'){
+                        this.title ="스페인"; //title
+                        this.className = 'Spain'; //className
+                        this.imgName = 'img/04.jpg'; //img
+                    }else if(this.className=='Spain'){
+                        this.title ="캐나다"; //title
+                        this.className = 'Canada'; //className
+                        this.imgName = 'img/05.jpg'; //img
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

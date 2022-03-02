@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="Chrome">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<title>Vue</title>
+</head>
+<body>
+        <div id="app">
+            <h1>{{msg}}</h1>
+            <my-comp v-if="visible"></my-comp>
+        </div>
+        <script>
+            var myComp = {
+                template: `<div>
+                    <h1>컴퍼넌트를 이용한 객체 생성</h1>
+                    <h2> {{msg2}} </h2>
+                    </div>`,
+                    data(){
+                        return{
+                            msg2: "component가 가진 값"
+                        }
+                    },
+                    /*create훅: Dom에 컴퍼넌트 추가되기 전에 실행됨
+                                el에 접근할 수 없음.*/
+            }
+            new Vue({
+                el: "#app",
+                data: {
+                    msg: "lifecycle 테스트 중..."
+                },
+                conponents:{
+                    'my-comp': myComp
+                },
+                
+
+            });
+        </script>
+</body>
+</html>

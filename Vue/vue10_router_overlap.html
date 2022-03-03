@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- vue 라우터 라이브러리 -->
+<script src="http://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+<title>Vue</title>
+<style>
+    body, ul, li{
+        margin:0; padding:0; list-style-type: none;
+    }
+
+    a:link, a:visited{
+        color: white; text-decoration: none;
+    }
+    a:hover{
+        color:yellow; text-decoration: none; font-weight: bold;
+    }
+
+    .topMenu>li{
+        float:left; text-align:center; background-color:blue; font-size:2em; width:33.33%; line-height:100px;
+    }
+    .home{
+        background-color: #ddd;
+        text-align: center;
+        height: 500px;
+    }
+    .login{
+        background-color: pink;
+        text-align: center;
+        height: 500px;
+    }
+    .mypage{
+        background-color: aquamarine;
+        height: 500px;
+    }
+
+    /* 마이페이지 */
+    .mypage>div{
+        float: left;
+    }
+    .mypage>div:nth-child(1){
+        background-color: blueviolet;
+        width: 20%;
+    }
+    .mypage>div:nth-child(2){
+        width: 80%;
+        background-color: #ddd;
+        height: 400px;
+    }
+    .subMenu>li{
+        line-height: 100px;
+        border-bottom: 1px solid beige;
+    }
+</style>
+</head>
+<body>
+    <div id="app">
+        <h1>중복 뷰 라우터 만들기</h1>
+        <ul class="topMenu">
+            <li><router-link to="/home">Home</router-link></li>
+            <li><router-link to="/login">Login</router-link></li>
+            <li><router-link to="/mypage">MyPage</router-link></li>
+        </ul>
+        <!-- router-link를 클릭하면 컨텐츠가 표시될 곳... -->
+        <router-view></router-view>
+
+        
+    </div>
+    <script>
+        // 1. Home, Login, MyPage의 컴퍼넌트를 생성한다.
+        var Home = {
+            template : `
+                <div class='home'>
+                    <img src='img/01.jpg' width='100%'/>
+                </div>
+            `
+        };
+        var Login = {
+            template : `
+                <div class='login'>
+                    로그인 페이지
+                </div>
+            `
+        };
+        var MyPage = {
+            template : `
+                <div class='mypage'>
+                    <div>
+                        <h1>마이페이지</h1>
+                        <ul class='subMenu'>
+                            <li><router-link to="/order">구매내역</router-link></li>
+                            <li><router-link to="/qna">문의내역</router-link></li>
+                            <li><router-link to="/profile">내정보</router-link></li>
+                        </ul>
+                    </div>
+                    <router-view><router-view>
+                </div>
+            `
+        };
+
+        // 마이페이지 : 구매내역, 문의내역, 내정보 컴퍼넌트 생성하기
+        var Order = {
+            data(){
+                return{
+                    product:['컴퓨터', '냉장고', '텔레비젼', '책상', '의자']
+                }
+            },
+            template : `
+                <div>
+                    <ol>
+                        <li v-for='(value,i) in product'>{{i+1}}. {{value}}</li>
+                    </ol>
+                </div>
+            `
+        };
+        var QnA = {
+            template : `
+                <div>
+                    문의내역
+                </div>
+            `
+        }
+        var MyProfile = {
+            data(){
+                return{
+                    userid:'goguma',
+                    username:'고구마',
+                    tel:'010-8989-9696'
+                }
+            },            
+            template : `
+                <div>
+                    <ol>
+                        <li>아이디 : {{userid}}</li>
+                        <li>이름 : {{username}}</li>
+                        <li>연락처 : {{tel}}</li>
+                    </ol>
+                </div>
+            `
+        }
+        
+
+        // 2. url주소에 해당하는 컴퍼넌트를 등록한다.
+        var routers = [
+            {path:'/home', component:Home},
+            {path:'/login', component:Login},
+            {path:'/mypage', component:MyPage,
+                children:[
+                    {path:'/order', component:Order},
+                    {path:'/qna', component:QnA},
+                    {path:'/profile', component:MyProfile}
+                ]
+            }
+        ]
+
+        // 3. 뷰 라우터 객체 생성
+        var router = new VueRouter({
+            routes:routers
+        });
+
+        // 4. 뷰 객체 생성
+        new Vue({
+            el:'#app',
+            router:router
+        });
+    </script>
+</body>
+</html>
